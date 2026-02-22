@@ -1,4 +1,4 @@
-# Vegtable Website 🌿
+# Vegtable Website 
 
 A full-stack vegetable e-commerce website built using modern web technologies.  
 This project showcases my skills in **React**, **Tailwind CSS**, **Express.js**, **MongoDB**, **JWT authentication**, **cookie management**, **bcrypt**, **Axios**, and more.  
@@ -7,7 +7,7 @@ I learned a lot from various tutorials and online resources, which guided me in 
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ### 1. `client side`
 The front-end of the website, built with **React** and **Tailwind CSS**.  
@@ -33,7 +33,7 @@ The back-end of the website, built with **Node.js** and **Express.js**.
 
 ---
 
-## ⚡ Technologies Used
+##  Technologies Used
 - **Front-End:** React, Tailwind CSS, Axios
 - **Back-End:** Node.js, Express.js, JWT, bcrypt, cookie-parser
 - **Database:** MongoDB
@@ -41,7 +41,7 @@ The back-end of the website, built with **Node.js** and **Express.js**.
 
 ---
 
-## 🚀 Features
+##  Features
 - Full-stack architecture with separate front-end and back-end
 - User registration, login, and authentication
 - Secure handling of passwords and sessions
@@ -50,7 +50,7 @@ The back-end of the website, built with **Node.js** and **Express.js**.
 
 ---
 
-## 💡 Learning & Experience
+##  Learning & Experience
 I built this project by exploring tutorials and examples online, which helped me understand how to integrate front-end and back-end technologies seamlessly. By building this full website, I learned how to:
 
 - Structure a React front-end with reusable components  
@@ -62,7 +62,7 @@ This experience strengthened my understanding of **full-stack development** and 
 
 ---
 
-## 📌 How to Run the Project
+##  How to Run the Project
 
 ### 1. Server
 ```bash
