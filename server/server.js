@@ -1,8 +1,9 @@
-import cookieParser from "cookie-parser"
-import express from 'express'
-import cors from 'cors'
-import connectDB from "./configs/db.js"
-import  "dotenv/config";
+import cookieParser from "cookie-parser";
+import express from "express";
+import cors from "cors";
+import connectDB from "./configs/db.js";
+import "dotenv/config";
+
 import userRouter from "./routes/userRoutes.js";
 import sellerRouter from "./routes/sellerRoutes.js";
 import connectCloudinary from "./configs/cloudinary.js";
@@ -12,30 +13,38 @@ import addressRouter from "./routes/addressRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import { stripeWebhooks } from "./controllers/orderController.js";
 
+const app = express();
 
-const app = express()
-const port =process.env.PORT || 4000
+const allowOrigins = [
+  "http://localhost:5173",
+  // later add your Vercel frontend URL here
+];
 
-await connectDB()
-await connectCloudinary()
+app.post(
+  "/stripe",
+  express.raw({ type: "application/json" }),
+  stripeWebhooks
+);
 
-//allow multiple origins
-const allowOrigins=['http://localhost:5173']
+app.use(express.json());
+app.use(cookieParser());
 
-app.post('/stripe', express.raw({type: "application/json"}), stripeWebhooks)
+app.use(
+  cors({
+    origin: allowOrigins,
+    credentials: true,
+  })
+);
 
-//middleware configuration
-app.use(express.json())
-app.use(cookieParser())
-app.use(cors({origin: allowOrigins, credentials: true}))
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use("/api/user", userRouter);
+app.use("/api/seller", sellerRouter);
+app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/address", addressRouter);
+app.use("/api/order", orderRouter);
 
-app.use('/api/user', userRouter)
-app.use('/api/seller', sellerRouter)
-app.use('/api/product', productRouter)
-app.use('/api/cart', cartRouter)
-app.use('/api/address', addressRouter)
-app.use('/api/order', orderRouter)
-
-app.listen(port, () => console.log(`app listening on port http://localhost:${port}`))
+export default app;
