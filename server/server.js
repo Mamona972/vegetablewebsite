@@ -15,6 +15,33 @@ import { stripeWebhooks } from "./controllers/orderController.js";
 
 const app = express();
 
+let initializationPromise;
+
+app.use(async (req, res, next) => {
+  try {
+    if (!initializationPromise) {
+      initializationPromise = Promise.all([
+        connectDB(),
+        connectCloudinary(),
+      ]);
+    }
+
+    await initializationPromise;
+    next();
+  } catch (error) {
+    console.error("Backend initialization failed:", error.message);
+
+    // Allow a later request to retry initialization.
+    initializationPromise = null;
+
+    res.status(503).json({
+      success: false,
+      message: "Database connection failed",
+    });
+  }
+});
+
+
 const allowOrigins = [
   "http://localhost:5173",
   // later add your Vercel frontend URL here
