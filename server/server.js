@@ -44,6 +44,7 @@ app.use(async (req, res, next) => {
 
 const allowOrigins = [
   "http://localhost:5173",
+  "https://vegetablewebsite-clientside.vercel.app"
   // later add your Vercel frontend URL here
 ];
 
